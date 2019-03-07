@@ -1,4 +1,8 @@
+import org.apache.log4j.Logger;
+
 public class QueueImp<E> implements Queue<E> {
+
+    private final static Logger log = Logger.getLogger(QueueImp.class);
 
     private E[] cola;
     private int max;
@@ -15,7 +19,7 @@ public class QueueImp<E> implements Queue<E> {
     }
 
 
-    @Override
+
     public void push(E e) {
 
 
@@ -23,31 +27,31 @@ public class QueueImp<E> implements Queue<E> {
 
            this.cola[ocupado] = e;
            this.ocupado++;
-           System.out.println("Elemento añadido al final de la cola");
+           log.info("Se ha añadido a la cola");
         }else{
 
-            System.out.println("Cola llena");
+            log.fatal("Cola llena");
         }
 
     }
 
-    @Override
+
     public E  pop() {
 
         if(this.ocupado == 0){
-            System.out.println("Cola Vacia");
+            log.fatal("Cola llena");
             return null;
         }else{
 
             this.ocupado--;
-            System.out.println("Elemento quitado de la cola");
+            log.info("Se ha añadido a la cola");
             return cola[ocupado];
 
         }
 
     }
 
-    @Override
+
     public int size() {
 
         return this.ocupado;
